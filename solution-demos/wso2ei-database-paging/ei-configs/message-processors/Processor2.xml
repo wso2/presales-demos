@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messageProcessor xmlns="http://ws.apache.org/ns/synapse"
+                  class="org.apache.synapse.message.processor.impl.forwarder.ScheduledMessageForwardingProcessor"
+                  name="Processor2"
+                  targetEndpoint="endpoint2"
+                  messageStore="Store2">
+   <parameter name="client.retry.interval">1000</parameter>
+   <parameter name="throttle">false</parameter>
+   <parameter name="member.count">1</parameter>
+   <parameter name="message.processor.reply.sequence">replyHandler2</parameter>
+   <parameter name="non.retry.status.codes">202</parameter>
+   <parameter name="message.processor.deactivate.sequence">storeFaultHandler2</parameter>
+   <parameter name="is.active">true</parameter>
+   <parameter name="target.endpoint">endpoint2</parameter>
+   <parameter name="max.delivery.attempts">4</parameter>
+   <parameter name="message.processor.fault.sequence">storeFaultHandler2</parameter>
+   <parameter name="store.connection.retry.interval">1000</parameter>
+   <parameter name="max.store.connection.attempts">-1</parameter>
+   <parameter name="max.delivery.drop">Disabled</parameter>
+   <parameter name="interval">1000</parameter>
+</messageProcessor>

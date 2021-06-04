@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<proxy xmlns="http://ws.apache.org/ns/synapse"
+       name="Log1Proxy"
+       transports="http https"
+       startOnLoad="true">
+   <description/>
+   <target>
+      <inSequence>
+         <log level="full">
+            <property name="Log1Proxy" value="1111111111111111"/>
+         </log>
+         <respond/>
+      </inSequence>
+   </target>
+</proxy>

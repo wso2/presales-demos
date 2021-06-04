@@ -8,7 +8,11 @@ The following repository contains the dockerized version of most commonly used p
 * [EI - MB - Analytics - setup](ei-mb-analytics)
 * [EI Quick Start Guide setup](ei-quick-start-guide)
 * [EI Distributed Transactions setup](ei-distributed-transactions)
+* [APIM and IS SSO setup](apim-is-sso)
+* [API Manager kubernetes demo with microservices](apim-microservices-kubernetes)
+* [Financial solutions - TPP as AISP](financial-solutions/tpp-as-aisp)
+* [Micro Integrator sample](micro-integrator-sample)
+* [API Microgateway reference architecture](microgateway_ref_architecture)
+* [Streaming Integrator Demo](si-demos)
+* [Solution Demos for specific use cases](solution-demos)
 
-
-## How to dockerize your demo
-Please refer to the guide on [WSO2 Solution Architecture guide](https://sites.google.com/a/wso2.com/solution-architecture/home/sales-tools/demo-index/containerized-demos/guide).

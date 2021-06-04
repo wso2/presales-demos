@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse" name="replyHandler2">
+   <filter xmlns:ns="http://org.apache.synapse/xsd"
+           source="$axis2:HTTP_SC"
+           regex="500">
+      <then>
+         <store messageStore="FailedMessageStore2"/>
+      </then>
+      <else>
+         <drop/>
+      </else>
+   </filter>
+</sequence>

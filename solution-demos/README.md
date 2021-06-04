@@ -9,6 +9,8 @@ The demo artefacts are stored under each demo scenario name and any other suppor
 	- Supportive links (blog, article, video, etc.)
 
 ## Demo Scenarios
+- [WSO2 EI reading a large data set with paging](wso2ei-database-paging)
+	- [Medium blog post](https://medium.com/wso2-learning/how-to-process-large-data-set-stored-in-a-database-in-a-reliable-manner-through-wso2-ei-a4b6ffc9259)
 
 ## Contribution
 1) Fork the repository to your github account

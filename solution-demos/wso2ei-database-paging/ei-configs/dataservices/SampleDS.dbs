@@ -1,0 +1,111 @@
+<data name="SampleDS" serviceNamespace="http://dss.test" transports="http https">
+   <config enableOData="false" id="default">
+      <property name="carbon_datasource_name">mysqldb</property>
+   </config>
+   <query id="insert_ACCOUNT_query" useConfig="default">
+      <sql>INSERT INTO ACCOUNT(AccountID,Branch,AccountNumber,AccountType,Balance,ModifiedDate) VALUES(?,?,?,?,?,?)</sql>
+      <param name="AccountID" ordinal="1" sqlType="INTEGER"/>
+      <param name="Branch" ordinal="2" sqlType="STRING"/>
+      <param name="AccountNumber" ordinal="3" sqlType="STRING"/>
+      <param name="AccountType" ordinal="4" sqlType="STRING"/>
+      <param name="Balance" ordinal="5" sqlType="REAL"/>
+      <param name="ModifiedDate" ordinal="6" sqlType="DATE"/>
+   </query>
+   <query id="update_ACCOUNT_query" useConfig="default">
+      <sql>UPDATE ACCOUNT SET Branch=?,AccountNumber=?,AccountType=?,Balance=?,ModifiedDate=? WHERE AccountID=?</sql>
+      <param name="Branch" ordinal="1" sqlType="STRING"/>
+      <param name="AccountNumber" ordinal="2" sqlType="STRING"/>
+      <param name="AccountType" ordinal="3" sqlType="STRING"/>
+      <param name="Balance" ordinal="4" sqlType="REAL"/>
+      <param name="ModifiedDate" ordinal="5" sqlType="DATE"/>
+      <param name="AccountID" ordinal="6" sqlType="INTEGER"/>
+   </query>
+   <query id="select_all_ACCOUNT_query" useConfig="default">
+      <sql>SELECT AccountID, Branch, AccountNumber, AccountType, Balance, ModifiedDate FROM ACCOUNT</sql>
+      <result element="ACCOUNTCollection" rowName="ACCOUNT">
+         <element column="AccountID" name="AccountID" xsdType="xs:integer"/>
+         <element column="Branch" name="Branch" xsdType="xs:string"/>
+         <element column="AccountNumber" name="AccountNumber" xsdType="xs:string"/>
+         <element column="AccountType" name="AccountType" xsdType="xs:string"/>
+         <element column="Balance" name="Balance" xsdType="xs:double"/>
+         <element column="ModifiedDate" name="ModifiedDate" xsdType="xs:date"/>
+      </result>
+   </query>
+   <query id="delete_ACCOUNT_query" useConfig="default">
+      <sql>DELETE FROM ACCOUNT WHERE AccountID=?</sql>
+      <param name="AccountID" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="select_with_key_ACCOUNT_query" useConfig="default">
+      <sql>SELECT AccountID, Branch, AccountNumber, AccountType, Balance, ModifiedDate FROM ACCOUNT WHERE AccountID=?</sql>
+      <result element="ACCOUNTCollection" rowName="ACCOUNT">
+         <element column="AccountID" name="AccountID" xsdType="xs:integer"/>
+         <element column="Branch" name="Branch" xsdType="xs:string"/>
+         <element column="AccountNumber" name="AccountNumber" xsdType="xs:string"/>
+         <element column="AccountType" name="AccountType" xsdType="xs:string"/>
+         <element column="Balance" name="Balance" xsdType="xs:double"/>
+         <element column="ModifiedDate" name="ModifiedDate" xsdType="xs:date"/>
+      </result>
+      <param name="AccountID" ordinal="1" sqlType="INTEGER"/>
+   </query>
+   <query id="select_range" useConfig="default">
+      <sql>select AccountID, Branch, AccountNumber, AccountType, Balance, ModifiedDate from ACCOUNT limit ?,?</sql>
+      <result element="ACCOUNTCollection" rowName="ACCOUNT">
+         <element column="AccountID" name="AccountID" xsdType="xs:integer"/>
+         <element column="Branch" name="Branch" xsdType="xs:string"/>
+         <element column="AccountNumber" name="AccountNumber" xsdType="xs:string"/>
+         <element column="AccountType" name="AccountType" xsdType="xs:string"/>
+         <element column="Balance" name="Balance" xsdType="xs:double"/>
+         <element column="ModifiedDate" name="ModifiedDate" xsdType="xs:date"/>
+      </result>
+      <param name="start" ordinal="1" sqlType="INTEGER"/>
+      <param name="limit" ordinal="2" sqlType="INTEGER"/>
+   </query>
+   <query id="slect_row_count" useConfig="default">
+      <sql>select count(*) as rowCount from ACCOUNT</sql>
+      <result element="ACCOUNTCollection" rowName="ACCOUNT">
+         <element column="rowCount" name="rowCount" xsdType="xs:integer"/>
+      </result>
+   </query>
+   <operation name="insert_ACCOUNT_operation">
+      <call-query href="insert_ACCOUNT_query">
+         <with-param name="AccountID" query-param="AccountID"/>
+         <with-param name="Branch" query-param="Branch"/>
+         <with-param name="ModifiedDate" query-param="ModifiedDate"/>
+         <with-param name="AccountType" query-param="AccountType"/>
+         <with-param name="Balance" query-param="Balance"/>
+         <with-param name="AccountNumber" query-param="AccountNumber"/>
+      </call-query>
+   </operation>
+   <operation name="select_all_ACCOUNT_operation">
+      <call-query href="select_all_ACCOUNT_query"/>
+   </operation>
+   <operation name="delete_ACCOUNT_operation">
+      <call-query href="delete_ACCOUNT_query">
+         <with-param name="AccountID" query-param="AccountID"/>
+      </call-query>
+   </operation>
+   <operation name="select_with_key_ACCOUNT_operation">
+      <call-query href="select_with_key_ACCOUNT_query">
+         <with-param name="AccountID" query-param="AccountID"/>
+      </call-query>
+   </operation>
+   <operation name="update_ACCOUNT_operation">
+      <call-query href="update_ACCOUNT_query">
+         <with-param name="AccountID" query-param="AccountID"/>
+         <with-param name="Branch" query-param="Branch"/>
+         <with-param name="ModifiedDate" query-param="ModifiedDate"/>
+         <with-param name="AccountType" query-param="AccountType"/>
+         <with-param name="Balance" query-param="Balance"/>
+         <with-param name="AccountNumber" query-param="AccountNumber"/>
+      </call-query>
+   </operation>
+   <operation name="select_range">
+      <call-query href="select_range">
+         <with-param name="start" query-param="start"/>
+         <with-param name="limit" query-param="limit"/>
+      </call-query>
+   </operation>
+   <operation name="select_row_count">
+      <call-query href="slect_row_count"/>
+   </operation>
+</data>

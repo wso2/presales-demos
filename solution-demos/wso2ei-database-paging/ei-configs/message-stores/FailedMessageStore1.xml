@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<messageStore xmlns="http://ws.apache.org/ns/synapse"
+              class="org.apache.synapse.message.store.impl.jms.JmsStore"
+              name="FailedMessageStore1">
+   <parameter name="store.jms.destination">failedQueue1</parameter>
+   <parameter name="store.failover.message.store.name">Store1</parameter>
+   <parameter name="store.producer.guaranteed.delivery.enable">false</parameter>
+   <parameter name="java.naming.factory.initial">org.wso2.andes.jndi.PropertiesFileInitialContextFactory</parameter>
+   <parameter name="connectionfactory.QueueConnectionFactory">amqp://admin:admin@clientID/carbon?brokerlist='tcp://localhost:5675'</parameter>
+   <parameter name="store.jms.JMSSpecVersion">1.1</parameter>
+</messageStore>

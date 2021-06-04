@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<sequence xmlns="http://ws.apache.org/ns/synapse">
+    <log>
+        <property name="STATUS" value="inside dblookup"/>
+    </log>
+    <payloadFactory media-type="xml">
+        <format>
+            <dss:select_range xmlns:dss="http://dss.test">
+                <dss:start>$1</dss:start>
+                <dss:limit>$2</dss:limit>
+            </dss:select_range>
+        </format>
+        <args>
+            <arg evaluator="xml" expression="$ctx:startValue"
+                literal="false" xmlns:ns="http://org.apache.synapse/xsd"/>
+            <arg evaluator="xml" expression="$ctx:limitValue"
+                literal="false" xmlns:ns="http://org.apache.synapse/xsd"/>
+        </args>
+    </payloadFactory>
+    <log level="full">
+        <property name="STATUS" value="payload before calling"/>
+    </log>
+    <call blocking="true">
+        <endpoint>
+            <address uri="http://localhost:8280/services/SampleDS"/>
+        </endpoint>
+    </call>
+    <log level="full">
+        <property name="STATUS" value="response from DS"/>
+    </log>
+    <iterate attachPath="//m0:ACCOUNTCollection"
+        expression="//m0:ACCOUNTCollection/m0:ACCOUNT"
+        preservePayload="true" sequential="true"
+        xmlns:m0="http://dss.test" xmlns:ns="http://org.apache.synapse/xsd">
+        <target>
+            <sequence>
+                <clone sequential="false">
+                    <target>
+                        <sequence>
+                            <axis2ns142:store messageStore="Store1" xmlns:axis2ns142="http://ws.apache.org/ns/synapse"/>
+                        </sequence>
+                    </target>
+                    <target>
+                        <sequence>
+                            <axis2ns143:store messageStore="Store2" xmlns:axis2ns143="http://ws.apache.org/ns/synapse"/>
+                        </sequence>
+                    </target>
+                </clone>
+            </sequence>
+        </target>
+    </iterate>
+    <log>
+        <property name="STATUS" value="log after clone"/>
+    </log>
+    <drop/>
+</sequence>
+
